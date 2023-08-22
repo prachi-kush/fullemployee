@@ -2,12 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
-
+const config=require('../admin/build/index.html')
 require('./src/database/config');
 app.use(cors());
 app.use(bodyParser.json());
 
-
+app.use(express.static(path.join(__dirname,'../admin/build')))
+app.get("*",path.join(__dirname,'../admin/build/index.html'))
 // Import user and admin routes
 const userRoutes = require('./src/userRoutes');
 const adminRoutes = require('./src/adminRoutes');
